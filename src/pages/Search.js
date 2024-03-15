@@ -2,6 +2,7 @@ import Layout from "../components/layout/Layout.js";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSearch } from "../context/Search";
+import { API_URL} from "../config.js";
 
 const Search = () => {
   const [values, setValues] = useSearch();
@@ -25,7 +26,7 @@ const Search = () => {
                 key={p._id}
               >
                 <img
-                  src={`/api/v1/products/products-photo/${p._id}`}
+                  src={`${API_URL}/api/v1/products/products-photo/${p._id}`}
                   className="card-img-top"
                   height={"200px"}
                   alt={p.name}
