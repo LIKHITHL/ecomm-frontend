@@ -6,6 +6,8 @@ import axios from "axios";
 import { Select } from "antd";
 import { useNavigate } from "react-router-dom";
 import { BiPen } from "react-icons/bi";
+import {API_URL} from "../../config";
+
 const { Option } = Select;
 
 const CreateProduct = () => {
@@ -22,7 +24,7 @@ const CreateProduct = () => {
   //get all category
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("/api/v1/category/get-categoris");
+      const { data } = await axios.get(`${API_URL}/api/v1/category/get-categoris`);
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -48,7 +50,7 @@ const CreateProduct = () => {
       productData.append("photo", photo);
       productData.append("category", category);
       const { data } = axios.post(
-        "/api/v1/products/create-product",
+        `${API_URL}/api/v1/products/create-product`,
         productData
       );
       if (data?.success) {

@@ -5,6 +5,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { AiFillDelete } from "react-icons/ai";
+import {API_URL} from "../../config";
+
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -12,7 +14,7 @@ const Users = () => {
 
   const getAllUsers = async () => {
     try {
-      const { data } = await axios.get(`/api/v1/users/alluser`);
+      const { data } = await axios.get(`/${API_URL}/api/v1/users/alluser`);
       setUsers(data.user);
       setTotalUser(data.totalCount);
     } catch (error) {
@@ -24,7 +26,7 @@ const Users = () => {
   const handleDelete = async (id) => {
     try {
       const { data } = await axios.delete(
-        `/api/v1/users/delete/${id}`
+        `/${API_URL}/api/v1/users/delete/${id}`
       );
       toast.success(data.message);
     } catch (error) {

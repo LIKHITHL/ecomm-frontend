@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/Cart";
 import toast from "react-hot-toast";
 import { BiRightArrowCircle } from "react-icons/bi";
+import {API_URL} from "../../config";
+
 
 
 const ProductDetails = () => {
@@ -25,7 +27,7 @@ const ProductDetails = () => {
   const getProduct = async () => {
     try {
       const { data } = await axios.get(
-        `/api/v1/products/single-product/${params.slug}`
+        `${API_URL}/api/v1/products/single-product/${params.slug}`
       );
       setProducts(data?.products);
       getSimilarProducts(data?.products._id, data?.products.category._id);
@@ -39,7 +41,7 @@ const ProductDetails = () => {
   const getSimilarProducts = async (pid, cid) => {
     try {
       const { data } = await axios(
-        `/api/v1/products/releted-products/${pid}/${cid}`
+        `${API_URL}/api/v1/products/releted-products/${pid}/${cid}`
       );
       setReletedProducts(data?.products);
     } catch (error) {
@@ -54,7 +56,7 @@ const ProductDetails = () => {
 
         <div className="pic m-3 mb-5">
           <img
-            src={`/api/v1/products/products-photo/${products._id}`}
+            src={`${API_URL}/api/v1/products/products-photo/${products._id}`}
             className="card-img-top"
             alt={products.name}
             height="300"
@@ -98,7 +100,7 @@ const ProductDetails = () => {
           {reletedProducts?.map((p) => (
             <div className="card m-2" key={p._id}>
               <img
-                src={`/api/v1/products/products-photo/${p._id}`}
+                src={`${API_URL}/api/v1/products/products-photo/${p._id}`}
                 className="card-img-top"
                 alt={p.name}
               />

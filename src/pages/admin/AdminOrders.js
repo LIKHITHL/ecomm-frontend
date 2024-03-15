@@ -5,7 +5,7 @@ import { useAuth } from "../../context/auth.js";
 import moment from "moment";
 import axios from "axios";
 import { Select } from "antd";
-;
+import {API_URL} from "../../config";
 const { Option } = Select;
 
 const AdminOrders = () => {
@@ -21,7 +21,7 @@ const AdminOrders = () => {
 
   const getOrders = async () => {
     try {
-      const { data } = await axios.get("/api/v1/auth/all-orders");
+      const { data } = await axios.get(`${API_URL}/api/v1/auth/all-orders`);
       setOrders(data);
     } catch (error) {
       console.log(error);
@@ -35,7 +35,7 @@ const AdminOrders = () => {
   const handleChange = async (orderId, value) => {
     try {
       const { data } = await axios.put(
-        `/api/v1/auth/orders-status/${orderId}`,
+        `${API_URL}/api/v1/auth/orders-status/${orderId}`,
         { status: value }
       );
       getOrders();
@@ -94,7 +94,7 @@ const AdminOrders = () => {
                       <div className="row mb-2 p-3  flex-row">
                         <div className="col-md-3">
                           <img
-                            src={`/api/v1/products/products-photo/${p._id}`}
+                            src={`${API_URL}/api/v1/products/products-photo/${p._id}`}
                             className="card-img-top"
                             alt={p.name}
                             width="100px"

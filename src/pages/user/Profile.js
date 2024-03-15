@@ -4,6 +4,8 @@ import UserManue from "../../components/layout/UserManue.js";
 import { useAuth } from "../../context/auth.js";
 import toast from "react-hot-toast";
 import axios from "axios";
+import {API_URL} from "../../config";
+
 
 const Profile = () => {
   /// contex
@@ -29,7 +31,7 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.put("/api/v1/auth/profile-update", {
+      const { data } = await axios.put(`${API_URL}/api/v1/auth/profile-update`, {
         name,
         email,
         password,

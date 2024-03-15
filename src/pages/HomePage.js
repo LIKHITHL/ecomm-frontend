@@ -9,6 +9,8 @@ import { AiOutlineReload } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/Cart.js";
 import "../components/styles/Homepage.css";
+import {API_URL} from "../config";
+
 
 const HomePage = () => {
   const [cart, setCart] = useCart();
@@ -25,7 +27,7 @@ const HomePage = () => {
   //get all category
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("/api/v1/category/get-categoris");
+      const { data } = await axios.get(`${API_URL}/api/v1/category/get-categoris`);
       if (data?.success) {
         setCategoris(data?.category);
       }
@@ -45,7 +47,7 @@ const HomePage = () => {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `/api/v1/products/products-list/${page}`
+        `${API_URL}/api/v1/products/products-list/${page}`
       );
       setLoading(false);
       setProducts(data.products);
@@ -59,7 +61,7 @@ const HomePage = () => {
 
   const getTotal = async () => {
     try {
-      const { data } = await axios.get("/api/v1/products/products-count");
+      const { data } = await axios.get(`${API_URL}/api/v1/products/products-count`);
       setTotal(data?.total);
     } catch (error) {
       console.log(error);
@@ -76,7 +78,7 @@ const HomePage = () => {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `/api/v1/products/products-list/${page}`
+        `${API_URL}/api/v1/products/products-list/${page}`
       );
       setLoading(false);
       setProducts([...products, ...data?.products]);
@@ -100,7 +102,7 @@ const HomePage = () => {
 
   const filterProducts = async () => {
     try {
-      const { data } = await axios.post("/api/v1/products/products-filter", {
+      const { data } = await axios.post(`${API_URL}/api/v1/products/products-filter`, {
         checked,
         radio,
       });
@@ -133,7 +135,7 @@ const HomePage = () => {
             {products?.map((p) => (
               <div className="card m-2 m-auto mt-3" key={p._id}>
                 <img
-                  src={`/api/v1/products/products-photo/${p._id}`}
+                  src={`${API_URL}/api/v1/products/products-photo/${p._id}`}
                   className="card-img-top"
                   alt={p.name}
                   onClick={() => navigate(`/product/${p.slug}`)}

@@ -4,6 +4,8 @@ import Layout from "../../components/layout/Layout.js";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import {API_URL} from "../../config";
+
 const Product = () => {
   const [products, setProducts] = useState([]);
 
@@ -11,7 +13,7 @@ const Product = () => {
 
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get("/api/v1/products/get-products");
+      const { data } = await axios.get(`${API_URL}/api/v1/products/get-products`);
       setProducts(data.products);
     } catch (error) {
       console.log(error);
@@ -41,7 +43,7 @@ const Product = () => {
                     key={p._id}
                   >
                     <img
-                      src={`/api/v1/products/products-photo/${p._id}`}
+                      src={`${API_URL}/api/v1/products/products-photo/${p._id}`}
                       className="card-img-top"
                       alt={p.name}
                     />

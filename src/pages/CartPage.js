@@ -8,6 +8,7 @@ import axios from "axios";
 import DropIn from "braintree-web-drop-in-react";
 import { BiEdit, BiRupee } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
+import {API_URL} from "../config";
 
 const CartPage = () => {
   const [auth, setAuth] = useAuth();
@@ -52,7 +53,7 @@ const CartPage = () => {
 
   const getToken = async () => {
     try {
-      const { data } = await axios.get("/api/v1/products/barintree/token");
+      const { data } = await axios.get(`${API_URL}/api/v1/products/barintree/token`);
       setClientToken(data?.clientToken);
     } catch (error) { }
   };
@@ -66,7 +67,7 @@ const CartPage = () => {
     try {
       setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
-      const { data } = await axios.post("/api/v1/products/barintree/payment", {
+      const { data } = await axios.post(`${API_URL}/api/v1/products/barintree/payment`, {
         nonce,
         cart,
       });
@@ -100,7 +101,7 @@ const CartPage = () => {
               <div className="row mb-2 p-3 card flex-row">
                 <div className="col-md-4">
                   <img
-                    src={`/api/v1/products/products-photo/${p._id}`}
+                    src={`${API_URL}/api/v1/products/products-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
                     width="100px"

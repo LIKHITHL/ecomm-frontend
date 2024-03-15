@@ -1,0 +1,1 @@
+export const API_URL = "https://ecomm-backend-ap84.onrender.com"
