@@ -12,7 +12,7 @@ export default function PrivetRoute() {
 
   useEffect(() => {
     const authCheck = async () => {
-      const res = await axios.get(`/api/v1/auth/user-auth`);
+      const res = await axios.get(`${API_URL}/api/v1/auth/user-auth`);
       if (res.data.ok) {
         setOk(true);
       } else {
