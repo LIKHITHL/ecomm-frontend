@@ -14,7 +14,7 @@ const Users = () => {
 
   const getAllUsers = async () => {
     try {
-      const { data } = await axios.get(`/${API_URL}/api/v1/users/alluser`);
+      const { data } = await axios.get(`${API_URL}/api/v1/users/alluser`);
       setUsers(data.user);
       setTotalUser(data.totalCount);
     } catch (error) {
@@ -26,7 +26,7 @@ const Users = () => {
   const handleDelete = async (id) => {
     try {
       const { data } = await axios.delete(
-        `/${API_URL}/api/v1/users/delete/${id}`
+        `${API_URL}/api/v1/users/delete/${id}`
       );
       toast.success(data.message);
     } catch (error) {

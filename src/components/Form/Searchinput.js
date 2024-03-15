@@ -12,7 +12,7 @@ const Searchinput = () => {
     try {
       e.preventDefault();
       const { data } = await axios.get(
-        `/${API_URL}/api/v1/products/serach/${values.keyword}`
+        `${API_URL}/api/v1/products/serach/${values.keyword}`
       );
       setValues({ ...values, results: data });
       navigate("/search");
